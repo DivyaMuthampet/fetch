@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: You can add your CSS styles here -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="header_container">
+            <div class="logo">
+                <img width="130px" src="Ajio-Logo.svg" alt="Ajio logo" title="">
+            </div>
+            <div class="nav-Container">
+                <div class="navtop">
+
+                    <div class="navtop_Cus">
+                        <a href="#">sign in/join <span>ajio</span></a>
+                        <a href="#">customer care</a>
+                    </div>
+                        
+                    <div class="vist_bg">
+                        <a href="#" >visit <span>ajioluxe</span></a>
+                    </div>
+
+                </div>
+                <nav class="navbar">
+
+                    <ul class="navIcons">
+                        <li>MEN</li>
+                        <li>WOMEN</li>
+                        <li>KIDS</li>
+                        <li>Beauty</li>
+                        <li>HOME AND KITCHEN</li>
+                    </ul>
+
+                    <div class="search-pos">
+                        <input type="text" placeholder="Search" >
+                        <i class="search-nav fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <div class="icons_Shop">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div id="cardContainer"></div>
+    <button id="loadMoreBtn">Load More</button>
+
+    <script src="fetch.js"></script> <!-- Make sure to link your JavaScript file -->
+</body>
+</html>
