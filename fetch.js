@@ -8,12 +8,17 @@ loadMoreBtn.addEventListener("click", loadMore);
 
 function loadMore() {
     fetch(url)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            // for(let item in data)
+            // console.log(data[item].image);
+            // console.log(data)
             displayCards(data);
         })
-        .catch(error => {
-            console.log("Error: " + error);
+        .catch((error) => {
+            console.log("Error" + error);
         });
 }
 
@@ -31,24 +36,45 @@ function displayCards(data) {
         img.alt = data[i].title;
 
         const title = document.createElement("h2");
-        title.textContent = data[i].title;
+        // Check if the title length exceeds a certain limit
+        const maxTitleLength = 20; // Maximum characters for the title
+        title.textContent = truncateText(data[i].title, maxTitleLength);
 
         const price = document.createElement("p");
         price.textContent = "Price: $" + data[i].price;
 
         const description = document.createElement("p");
-        description.textContent = data[i].description;
+        const truncatedDescription = data[i].description.substring(0, 50); // Truncate description
+        description.textContent = truncatedDescription;
+        
+        const showMoreButton = document.createElement("button");
+        showMoreButton.textContent = "Show More";
+        showMoreButton.addEventListener("click", function() {
+            if (description.textContent === truncatedDescription) {
+                description.textContent = data[i].description;
+                showMoreButton.textContent = "Show Less";
+            } else {
+                description.textContent = truncatedDescription;
+                showMoreButton.textContent = "Show More";
+            }
+        });
 
         const category = document.createElement("p");
         category.textContent = "Category: " + data[i].category;
 
         const rating = document.createElement("p");
-        rating.textContent = "Rating: " + data[i].rating.rate + " (" + data[i].rating.count + " reviews)";
+        // Check if the rating property exists before accessing its properties
+        if (data[i].rating) {
+            rating.textContent = "Rating: " + data[i].rating.rate + " (" + data[i].rating.count + " reviews)";
+        } else {
+            rating.textContent = "Rating: Not available";
+        }
 
         card.appendChild(img);
         card.appendChild(title);
         card.appendChild(price);
         card.appendChild(description);
+        card.appendChild(showMoreButton); // Append show more button
         card.appendChild(category);
         card.appendChild(rating);
 
@@ -57,4 +83,14 @@ function displayCards(data) {
     startIndex += itemsPerPage;
 }
 
+// Function to truncate text and add ellipsis
+function truncateText(text, maxLength) {
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+}
+
 loadMore();
+
+
+
+
+
